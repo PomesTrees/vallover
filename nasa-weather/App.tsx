@@ -20,8 +20,14 @@ export default function App() {
             <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#e81f1fff">
               <CustomWeatherChart />
             </HStack>
-            <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#e81f1fff">
+            <Text color={"#ffffff"}>Details</Text>
+            <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#1fe826ff">
               <Wideget />
+              <Wideget /> 
+            </HStack>
+            <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#1fe826ff">
+              <Wideget />
+              <Wideget /> 
             </HStack>
           </Box>
         </VStack>
