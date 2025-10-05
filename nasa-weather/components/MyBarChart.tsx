@@ -10,7 +10,7 @@ const MyBarChart = () => {
             Humidity
           </Text>
           <Box w="90%" maxW="400" flexDirection="row" alignItems="center">
-            <Progress bg="coolGray.100" _filledTrack={{ bg: "lime.500" }} value={75} mx="4" flex={1} />
+            <Progress bg="coolGray.100" _filledTrack={{ bg: "primary.500" }} value={75} mx="4" flex={1} />
             <Text ml={2} color="#ffffff" fontWeight="bold">75%</Text>
           </Box>
         </Center>
