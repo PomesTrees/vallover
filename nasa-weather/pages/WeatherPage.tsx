@@ -71,18 +71,22 @@ const WeatherPage = () => {
               <Spacer />
                 <Text m={5} fontWeight="bold" fontSize="lg" color={"#ffffff"}>Details</Text>
               {/* <Spacer /> */}
-              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
-                <Wideget label="Temperatura" value={getValue("T2M")} unit="°C" icon={<MaterialCommunityIcons name="thermometer" color="#e81f1fff" size={40} />} />
-                <Wideget label="Humedad" value={getValue("RH2M")} unit="%" icon={<MaterialCommunityIcons name="water-percent" color="#1fe826ff" size={40} />} />
-              </HStack>
-              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
-                <Wideget label="Viento" value={getValue("WS2M")} unit="m/s" icon={<MaterialCommunityIcons name="weather-windy" color="#2e8ae6ff" size={40} />} />
-                <Wideget label="Precipitación" value={getValue("PRECTOTCORR")} unit="mm/día" icon={<MaterialCommunityIcons name="weather-rainy" color="#1f87e8ff" size={40} />} />
-              </HStack>
-              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
-                <Wideget label="Radiación solar" value={getValue("ALLSKY_SFC_SW_DWN")} unit="MJ/m²/día" icon={<MaterialCommunityIcons name="white-balance-sunny" color="#e8c21fff" size={40} />} />
-                <Wideget label="Nubosidad" value={getValue("CLOUD_AMT")} unit="%" icon={<MaterialCommunityIcons name="weather-cloudy" color="#cccccc" size={40} />} />
-              </HStack>
+              {!loading && weatherData && (
+                <>
+                  <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
+                    <Wideget label="Temperatura" value={getValue("T2M")} unit="°C" icon={<MaterialCommunityIcons name="thermometer" color="#e81f1fff" size={40} />} />
+                    <Wideget label="Humedad" value={getValue("RH2M")} unit="%" icon={<MaterialCommunityIcons name="water-percent" color="#1fe826ff" size={40} />} />
+                  </HStack>
+                  <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
+                    <Wideget label="Viento" value={getValue("WS2M")} unit="m/s" icon={<MaterialCommunityIcons name="weather-windy" color="#2e8ae6ff" size={40} />} />
+                    <Wideget label="Precipitación" value={getValue("PRECTOTCORR")} unit="mm/día" icon={<MaterialCommunityIcons name="weather-rainy" color="#1f87e8ff" size={40} />} />
+                  </HStack>
+                  <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
+                    <Wideget label="Radiación solar" value={getValue("ALLSKY_SFC_SW_DWN")} unit="MJ/m²/día" icon={<MaterialCommunityIcons name="white-balance-sunny" color="#e8c21fff" size={40} />} />
+                    <Wideget label="Nubosidad" value={getValue("CLOUD_AMT")} unit="%" icon={<MaterialCommunityIcons name="weather-cloudy" color="#cccccc" size={40} />} />
+                  </HStack>
+                </>
+              )}
               <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
                 <CustomWeatherChart />
               </HStack>
