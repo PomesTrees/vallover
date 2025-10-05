@@ -28,26 +28,23 @@ export default function App() {
               <Entypo name="dots-three-horizontal" color="#ffffffff" size={20} />
             </Box>
             {/* Contenido scrollable */}
-            <ScrollView style={{ flex: 1, marginTop: 64 }} contentContainerStyle={{ flexGrow: 1 }}>
-              <VStack w="100%" h="8%" bg={cardColor}>
-                <Box w="100%" h="100%" bg="#175997ff" flexDirection="row" justifyContent="center" alignItems="center" >
+            <ScrollView style={{ flex: 1, marginTop: 65 }} contentContainerStyle={{ flexGrow: 1 }}>
+              <VStack w="100%" h="12%" mb="4" bg={cardColor}>
+                <Box w="100%" h="100%" bg="#175997ff" justifyContent="center" alignItems="center" borderBottomLeftRadius={10} borderBottomRightRadius={10}>
                   <MaterialCommunityIcons name="weather-lightning" color="#ffffffff" size={120} />
-                </Box>
-                <Box w="100%" h="100%" bg="#175997ff" justifyContent="center" alignItems="center" >
                   <Text fontSize="lg" fontWeight="bold" color={"#ffffff"}>Weather</Text>
                   <Text color={"#ffffff"}>Weekday, Day Month Year</Text>
                 </Box>
-                <Box w="100%" h="80%" bg="#175997ff" justifyContent="center" alignItems="center" borderBottomLeftRadius={20} borderBottomRightRadius={20} >
-                </Box>
               </VStack>
-              <HStack w="100%" h="25%" pl="4" pr="4" alignContent="center" justifyContent="center" flexWrap="wrap" >
+              <Spacer />
+              <HStack w="100%" h="250px" pl="4" pr="4" alignContent="center" justifyContent="center" flexWrap="wrap" >
                 <CustomWeatherChart />
               </HStack>
-               <HStack w="100%" justifyContent="center" flexWrap="wrap">
+              <HStack w="100%" justifyContent="center" flexWrap="wrap">
                 <MyBarChart />
               </HStack>
               <Spacer />
-                <Text mb={5} fontWeight="bold" fontSize="lg" color={"#ffffff"}>Details</Text>
+                <Text m={5} fontWeight="bold" fontSize="lg" color={"#ffffff"}>Details</Text>
               {/* <Spacer /> */}
               <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
                 <Wideget />

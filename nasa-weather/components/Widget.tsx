@@ -4,8 +4,8 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 
 const Wideget = () => {
   return (
-    <Box bg="#27272a" w="240px" h="220px" rounded="lg" m={2} p="2" shadow="2" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-        <Text fontSize="13" fontWeight="bold" mb="4" color={"#ffffff"}>
+    <Box bg="#27272a" w="190px" h="170px" rounded="lg" m={2} shadow="2" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+        <Text fontSize="13" fontWeight="bold" color={"#ffffff"}>
             Widget
         </Text>
         <Box w="100%" h="140px" alignItems="center" justifyContent="center" >
