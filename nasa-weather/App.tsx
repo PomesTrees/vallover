@@ -3,17 +3,11 @@ import { NativeBaseProvider, Box, Text, Button, VStack } from "native-base";
 import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
 import { LineChart } from "react-native-gifted-charts";
+// import { LineChart as RNCKLineChart } from "react-native-chart-kit";
+// import { Dimensions } from "react-native";
+import CustomWeatherChart from "./components/CustomWeatherChart";
 
 export default function App() {
-  // Sample data for the chart
-  const chartData = [
-    { value: 20, label: 'Jan' },
-    { value: 35, label: 'Feb' },
-    { value: 28, label: 'Mar' },
-    { value: 45, label: 'Apr' },
-    { value: 32, label: 'May' },
-    { value: 55, label: 'Jun' },
-  ];
 
   return (
     <GluestackUIProvider config={config}>
@@ -34,30 +28,16 @@ export default function App() {
             </Text>
           </Box>
           
-          <Box bg="white" rounded="lg" p="4" shadow="2">
-            <Text fontSize="md" fontWeight="bold" mb="4">
-              Sample Temperature Chart
-            </Text>
-            <LineChart
-              data={chartData}
-              width={300}
-              height={200}
-              color="#0BA5EC"
-              thickness={3}
-              dataPointsColor="#0BA5EC"
-              textColor="#333"
-              textShiftY={-8}
-              textShiftX={-10}
-              showVerticalLines
-              verticalLinesColor="rgba(14,164,164,0.5)"
-              xAxisColor="lightgray"
-              yAxisColor="lightgray"
-            />
-          </Box>
-          
           <Button onPress={() => console.log("Button works!")}>
             Test Button
           </Button>
+
+          <Box bg="white" rounded="lg" p="4" shadow="2" mt="4">
+            <Text fontSize="md" fontWeight="bold" mb="4">
+              Bezier Line Chart (Gifted Charts)
+            </Text>
+            <CustomWeatherChart />
+          </Box>
         </VStack>
       </NativeBaseProvider>
     </GluestackUIProvider>
