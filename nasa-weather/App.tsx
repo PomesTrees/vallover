@@ -1,6 +1,6 @@
 import React from "react";
 import { useColorScheme } from "react-native";
-import { NativeBaseProvider, Box, Text, Button, VStack, HStack, Spacer} from "native-base";
+import { NativeBaseProvider, Box, Text, Button, VStack, HStack, Spacer, ScrollView} from "native-base";
 import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
 import CustomWeatherChart from "./components/CustomWeatherChart";
@@ -15,20 +15,28 @@ export default function App() {
     <GluestackUIProvider config={config}>
       <NativeBaseProvider>
         <VStack space="4" p="4" bg={bgColor} width="100%" height="100%">
-          <Box rounded="lg" p="4" shadow="2" bg={cardColor}>
-
-            <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#e81f1fff">
-              <CustomWeatherChart />
-            </HStack>
-            <Text color={"#ffffff"}>Details</Text>
-            <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#1fe826ff">
-              <Wideget />
-              <Wideget /> 
-            </HStack>
-            <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#1fe826ff">
-              <Wideget />
-              <Wideget /> 
-            </HStack>
+          <Box rounded="lg" p="4" shadow="2" bg={cardColor} borderWidth={2} borderColor="#e81fd1ff" flex={1}> 
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#e81f1fff">
+                <CustomWeatherChart />
+              </HStack>
+              <Text color={"#ffffff"}>Details</Text>
+              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#1fe826ff">
+                <Wideget />
+                <Wideget /> 
+              </HStack>
+              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#1fe826ff">
+                <Wideget />
+                <Wideget /> 
+              </HStack>
+              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#1fe826ff">
+                <Wideget />
+                <Wideget /> 
+              </HStack>
+              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#e81f1fff">
+                <CustomWeatherChart />
+              </HStack>
+            </ScrollView>
           </Box>
         </VStack>
       </NativeBaseProvider>
