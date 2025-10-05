@@ -28,8 +28,16 @@ const WeatherPage = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // Variables para latitud y longitud
+  const LATITUDE = 25.664642;
+  const LONGITUDE = -100.421562;
+
+  // Selección de año y mes
+  const [selectedYear, setSelectedYear] = useState(2015);
+  const [selectedMonth, setSelectedMonth] = useState("JAN");
+
   useEffect(() => {
-    fetch("https://power.larc.nasa.gov/api/temporal/climatology/point?start=2001&end=2020&latitude=25.664642&longitude=-100.421562&community=ag&parameters=T2M,RH2M,WS2M,PRECTOTCORR,ALLSKY_SFC_SW_DWN,CLOUD_AMT&header=true")
+    fetch(`https://power.larc.nasa.gov/api/temporal/climatology/point?start=2001&end=2020&latitude=${LATITUDE}&longitude=${LONGITUDE}&community=ag&parameters=T2M,RH2M,WS2M,PRECTOTCORR,ALLSKY_SFC_SW_DWN,CLOUD_AMT&header=true`)
       .then(res => res.json())
       .then(data => {
         setWeatherData(data);
@@ -42,7 +50,7 @@ const WeatherPage = () => {
   }, []);
 
   // Helper para mostrar valores
-  const getValue = (param: string, month = "ANN") => {
+  const getValue = (param: string, month = selectedMonth) => {
     return weatherData?.properties?.parameter?.[param]?.[month] ?? "-";
   };
 
@@ -54,29 +62,49 @@ const WeatherPage = () => {
   };
 
   return (
-        <VStack space="4" p="4" bg={bgColor} width="100%" height="100%">
-          <Box rounded="lg" shadow="2" bg={cardColor} flex={1}> 
-            {/* Header fijo */}
-            <Box w="100%" h="80px" bg="#175997ff" p={5} flexDirection="row" alignItems="center" justifyContent="space-between" borderTopLeftRadius={10} borderTopRightRadius={10} position="absolute" top={0} left={0} zIndex={10}>
-                <Button borderRadius={30} bg="#175997ff" _hover={{ bg: "#175997ff" }} _pressed={{ bg: "#175997ff" }}>
-                    <Box width="100%" height="100%" ml="1.5">
-                        <MaterialIcons name="arrow-back-ios" color="#ffffffff" size={20} />
-                    </Box>
-                </Button>
-                <Text fontSize="lg" fontWeight="bold" color={"#ffffff"}>City, Country</Text>
-                <Button borderRadius={30} bg="#175997ff" _hover={{ bg: "#175997ff" }} _pressed={{ bg: "#175997ff" }}>
-                    <Entypo name="dots-three-horizontal" color="#ffffffff" size={20} />
-                </Button>
+    <VStack space="4" p="4" bg={bgColor} width="100%" height="100%">
+      <Box rounded="lg" shadow="2" bg={cardColor} flex={1}> 
+        {/* Header fijo */}
+        <Box w="100%" h="80px" bg="#175997ff" p={5} flexDirection="row" alignItems="center" justifyContent="space-between" borderTopLeftRadius={10} borderTopRightRadius={10} position="absolute" top={0} left={0} zIndex={10}>
+          <Button borderRadius={30} bg="#175997ff" _hover={{ bg: "#175997ff" }} _pressed={{ bg: "#175997ff" }}>
+            <Box width="100%" height="100%" ml="1.5">
+              <MaterialIcons name="arrow-back-ios" color="#ffffffff" size={20} />
             </Box>
-            {/* Contenido scrollable */}
-            <ScrollView style={{ flex: 1, marginTop: 65 }} contentContainerStyle={{ flexGrow: 1 }}>
-              <VStack w="100%" h="15%" mb="4" bg={cardColor}>
-                <Box w="100%" h="100%" bg="#175997ff" justifyContent="center" alignItems="center" borderBottomLeftRadius={10} borderBottomRightRadius={10}>
-                  <MaterialCommunityIcons name="weather-lightning" color="#ffffffff" size={120} />
-                  <Text fontSize="lg" fontWeight="bold" color={"#ffffff"}>Weather</Text>
-                  <Text color={"#ffffff"}>Weekday, Day Month Year</Text>
-                </Box>
-              </VStack>
+          </Button>
+          <Text fontSize="lg" fontWeight="bold" color={"#ffffff"}>City, Country</Text>
+          <Button borderRadius={30} bg="#175997ff" _hover={{ bg: "#175997ff" }} _pressed={{ bg: "#175997ff" }}>
+            <Entypo name="dots-three-horizontal" color="#ffffffff" size={20} />
+          </Button>
+        </Box>
+        {/* Selector de año y mes */}
+        <HStack w="100%" justifyContent="center" alignItems="center" mt={20} mb={2}>
+          <Text color="#fff" mr={2}>Año:</Text>
+          <Button size="sm" onPress={() => setSelectedYear(selectedYear - 1)}>-</Button>
+          <Text color="#fff" mx={2}>{selectedYear}</Text>
+          <Button size="sm" onPress={() => setSelectedYear(selectedYear + 1)}>+</Button>
+          <Text color="#fff" ml={4} mr={2}>Mes:</Text>
+          <Button size="sm" onPress={() => setSelectedMonth("JAN")}>Ene</Button>
+          <Button size="sm" onPress={() => setSelectedMonth("FEB")}>Feb</Button>
+          <Button size="sm" onPress={() => setSelectedMonth("MAR")}>Mar</Button>
+          <Button size="sm" onPress={() => setSelectedMonth("APR")}>Abr</Button>
+          <Button size="sm" onPress={() => setSelectedMonth("MAY")}>May</Button>
+          <Button size="sm" onPress={() => setSelectedMonth("JUN")}>Jun</Button>
+          <Button size="sm" onPress={() => setSelectedMonth("JUL")}>Jul</Button>
+          <Button size="sm" onPress={() => setSelectedMonth("AUG")}>Ago</Button>
+          <Button size="sm" onPress={() => setSelectedMonth("SEP")}>Sep</Button>
+          <Button size="sm" onPress={() => setSelectedMonth("OCT")}>Oct</Button>
+          <Button size="sm" onPress={() => setSelectedMonth("NOV")}>Nov</Button>
+          <Button size="sm" onPress={() => setSelectedMonth("DEC")}>Dic</Button>
+        </HStack>
+        {/* Contenido scrollable */}
+        <ScrollView style={{ flex: 1, marginTop: 65 }} contentContainerStyle={{ flexGrow: 1 }}>
+          <VStack w="100%" h="15%" mb="4" bg={cardColor}>
+            <Box w="100%" h="100%" bg="#175997ff" justifyContent="center" alignItems="center" borderBottomLeftRadius={10} borderBottomRightRadius={10}>
+              <MaterialCommunityIcons name="weather-lightning" color="#ffffffff" size={120} />
+              <Text fontSize="lg" fontWeight="bold" color={"#ffffff"}>Weather</Text>
+              <Text color={"#ffffff"}>{selectedMonth} {selectedYear}</Text>
+            </Box>
+          </VStack>
               <Spacer />
               <HStack w="100%" h="250px" pl="4" pr="4" alignContent="center" justifyContent="center" flexWrap="wrap" >
                 {/* Chart de temperatura mensual */}
