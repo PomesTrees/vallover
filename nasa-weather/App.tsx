@@ -4,6 +4,7 @@ import { NativeBaseProvider, Box, Text, Button, VStack, HStack, Spacer} from "na
 import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
 import CustomWeatherChart from "./components/CustomWeatherChart";
+import Wideget from "./components/Widget";
 
 export default function App() {
   const scheme = useColorScheme();
@@ -15,9 +16,12 @@ export default function App() {
       <NativeBaseProvider>
         <VStack space="4" p="4" bg={bgColor} width="100%" height="100%">
           <Box rounded="lg" p="4" shadow="2" bg={cardColor}>
-            <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
+
+            <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#e81f1fff">
               <CustomWeatherChart />
-              <CustomWeatherChart />
+            </HStack>
+            <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#e81f1fff">
+              <Wideget />
             </HStack>
           </Box>
         </VStack>
@@ -25,3 +29,12 @@ export default function App() {
     </GluestackUIProvider>
   );
 }
+
+
+
+
+// TO ADD 4X4 CHARTS
+// {/* <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#e81f1fff">
+//   <CustomWeatherChart />
+//   <CustomWeatherChart />
+// </HStack> */}
