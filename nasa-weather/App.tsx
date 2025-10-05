@@ -20,52 +20,51 @@ export default function App() {
     <GluestackUIProvider config={config}>
       <NativeBaseProvider>
         <VStack space="4" p="4" bg={bgColor} width="100%" height="100%">
-          <Box rounded="lg" p="4" shadow="2" bg={cardColor} borderWidth={2} borderColor="#e81fd1ff" flex={1}> 
+          <Box rounded="lg" p="4" shadow="2" bg={cardColor} flex={1}> 
             <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
               <VStack w="100%" h="5%" bg={cardColor}>
-                <Box w="100%" h="100%" bg="#175997ff" p={5} flexDirection="row" alignItems="center" justifyContent="space-between" borderWidth={2} borderTopLeftRadius={20} borderTopRightRadius={20} borderColor="#1f87e8ff">
+                <Box w="100%" h="100%" bg="#175997ff" p={5} flexDirection="row" alignItems="center" justifyContent="space-between" borderTopLeftRadius={20} borderTopRightRadius={20}>
                   <MaterialIcons name="arrow-back-ios" color="#ffffffff" size={20} />
                   <Text fontSize="lg" fontWeight="bold" color={"#ffffff"}>City, Country</Text>
                   <Entypo name="dots-three-horizontal" color="#ffffffff" size={20} />
                 </Box>
-                <Box w="100%" h="100%" bg="#175997ff" flexDirection="row" justifyContent="center" alignItems="center" borderWidth={2} borderColor="#1f87e8ff">
+                <Box w="100%" h="100%" bg="#175997ff" flexDirection="row" justifyContent="center" alignItems="center" >
                   <MaterialCommunityIcons name="weather-lightning" color="#ffffffff" size={100} />
                 </Box>
-                <Box w="100%" h="100%" bg="#175997ff" justifyContent="center" alignItems="center" borderWidth={2} borderColor="#1f87e8ff">
+                <Box w="100%" h="100%" bg="#175997ff" justifyContent="center" alignItems="center" >
                   <Text fontSize="lg" fontWeight="bold" color={"#ffffff"}>Weather</Text>
                   <Text color={"#ffffff"}>Weekday, Day Month Year</Text>
                 </Box>
-                <Box w="100%" h="100%" bg="#175997ff" justifyContent="center" alignItems="center" borderWidth={2} borderBottomLeftRadius={20} borderBottomRightRadius={20} borderColor="#5be81fff">
+                <Box w="100%" h="100%" bg="#175997ff" justifyContent="center" alignItems="center" borderBottomLeftRadius={20} borderBottomRightRadius={20} >
                 </Box>
               </VStack>
-              <HStack w="100%" h="17%" mt={200} pl="4" pr="4" alignContent="center" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#e81f1fff">
+              <HStack w="100%" h="17%" mt={200} pl="4" pr="4" alignContent="center" justifyContent="center" flexWrap="wrap" >
                 <CustomWeatherChart />
               </HStack>
-               <HStack w="100%" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#291fe8ff">
+               <HStack w="100%" justifyContent="center" flexWrap="wrap">
                 <MyBarChart />
               </HStack>
               <Spacer />
                 <Text mb={5} fontWeight="bold" fontSize="lg" color={"#ffffff"}>Details</Text>
               {/* <Spacer /> */}
-              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#1fe826ff">
+              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
                 <Wideget />
                 <Wideget /> 
               </HStack>
-              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#1fe826ff">
+              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
                 <Wideget />
                 <Wideget /> 
               </HStack>
-              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#1fe826ff">
+              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
                 <Wideget />
                 <Wideget /> 
               </HStack>
-              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#e81f1fff">
+              <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
                 <CustomWeatherChart />
               </HStack>
-              <HStack w="100%" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#291fe8ff">
+              <HStack w="100%" justifyContent="center" flexWrap="wrap">
                 <AIBar />
               </HStack>
-              {/* <Spacer /> */}
             </ScrollView>
           </Box>
         </VStack>
