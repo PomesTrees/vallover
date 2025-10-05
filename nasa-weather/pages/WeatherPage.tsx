@@ -16,7 +16,16 @@ const WeatherPage = () => {
   const bgColor = scheme === 'dark' ? '#18181b' : 'white';
   const cardColor = scheme === 'dark' ? '#343438ff' : 'white';
 
-  const [weatherData, setWeatherData] = useState(null);
+  type WeatherData = {
+    properties?: {
+      parameter?: {
+        [key: string]: {
+          [month: string]: number;
+        };
+      };
+    };
+  };
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -33,8 +42,15 @@ const WeatherPage = () => {
   }, []);
 
   // Helper para mostrar valores
-  const getValue = (param, month = "ANN") => {
+  const getValue = (param: string, month = "ANN") => {
     return weatherData?.properties?.parameter?.[param]?.[month] ?? "-";
+  };
+
+  // Helper para obtener datos mensuales para charts
+  const getMonthlyData = (param: string): { value: number; label: string }[] => {
+    const months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+    if (!weatherData?.properties?.parameter?.[param]) return [];
+    return months.map((m) => ({ value: weatherData.properties?.parameter?.[param]?.[m] ?? 0, label: m }));
   };
 
   return (
@@ -63,10 +79,12 @@ const WeatherPage = () => {
               </VStack>
               <Spacer />
               <HStack w="100%" h="250px" pl="4" pr="4" alignContent="center" justifyContent="center" flexWrap="wrap" >
-                <CustomWeatherChart />
+                {/* Chart de temperatura mensual */}
+                <CustomWeatherChart data={getMonthlyData("T2M")} title="Temperatura mensual" color="#0288d1" />
               </HStack>
               <HStack w="100%" justifyContent="center" flexWrap="wrap">
-                <MyBarChart />
+                {/* Chart de humedad mensual */}
+                <MyBarChart data={getMonthlyData("RH2M")} title="Humedad mensual" />
               </HStack>
               <Spacer />
                 <Text m={5} fontWeight="bold" fontSize="lg" color={"#ffffff"}>Details</Text>
@@ -88,7 +106,8 @@ const WeatherPage = () => {
                 </>
               )}
               <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
-                <CustomWeatherChart />
+                {/* Chart de viento mensual */}
+                <CustomWeatherChart data={getMonthlyData("WS2M")} title="Viento mensual" color="#2e8ae6" />
               </HStack>
               <HStack w="100%" justifyContent="center" flexWrap="wrap">
                 <AIBar />

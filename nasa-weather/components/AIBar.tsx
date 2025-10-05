@@ -6,14 +6,39 @@ const AIBar = () => {
   const [tip, setTip] = useState("Tip: Keep your windows closed during high winds to prevent dust and debris from entering your home.");
 
   useEffect(() => {
-    fetch('AIzaSyADCCTkoTbOKG8KX4XNf2JmMVegDhrztL0', {
-      method: 'POST',
-      headers: { 'Authorization': 'Bearer TU_API_KEY', 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt: 'Dame un tip random para el clima' })
-    })
-      .then(res => res.json())
-      .then(data => setTip(data.tip))
-      .catch(err => console.error(err));
+    fetch(
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-goog-api-key': 'AIzaSyADCCTkoTbOKG8KX4XNf2JmMVegDhrztL0',
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [
+                {
+                  text: 'Dame un tip random para el clima y usa el siguiente formato: "Tip: <tip>". El tip debe ser en ingles y relacionado con el clima. Solo muestra el tip no me des texto adicional',
+                },
+              ],
+            },
+          ],
+        }),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        // Gemini responde en data.candidates[0].content.parts[0].text
+        const tipText =
+          data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+          'Tip: No se pudo obtener el tip.';
+        setTip(tipText);
+      })
+      .catch((err) => {
+        console.error(err);
+        setTip('Tip: Error al obtener el tip.');
+      });
   }, []);
 
   return (
