@@ -29,7 +29,7 @@ export default function App() {
             </Box>
             {/* Contenido scrollable */}
             <ScrollView style={{ flex: 1, marginTop: 65 }} contentContainerStyle={{ flexGrow: 1 }}>
-              <VStack w="100%" h="12%" mb="4" bg={cardColor}>
+              <VStack w="100%" h="15%" mb="4" bg={cardColor}>
                 <Box w="100%" h="100%" bg="#175997ff" justifyContent="center" alignItems="center" borderBottomLeftRadius={10} borderBottomRightRadius={10}>
                   <MaterialCommunityIcons name="weather-lightning" color="#ffffffff" size={120} />
                   <Text fontSize="lg" fontWeight="bold" color={"#ffffff"}>Weather</Text>
