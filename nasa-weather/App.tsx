@@ -5,6 +5,7 @@ import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
 import CustomWeatherChart from "./components/CustomWeatherChart";
 import Wideget from "./components/Widget";
+import AIBar from "./components/AIBar";
 
 export default function App() {
   const scheme = useColorScheme();
@@ -35,6 +36,9 @@ export default function App() {
               </HStack>
               <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#e81f1fff">
                 <CustomWeatherChart />
+              </HStack>
+              <HStack w="100%" justifyContent="center" flexWrap="wrap" borderWidth={2} borderColor="#291fe8ff">
+                <AIBar />
               </HStack>
             </ScrollView>
           </Box>
