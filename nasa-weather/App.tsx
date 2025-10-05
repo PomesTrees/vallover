@@ -2,7 +2,7 @@ import React from "react";
 import { NativeBaseProvider, Box, Text, Button, VStack } from "native-base";
 import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
-import { LineChart } from "react-native-gifted-charts";
+// import { LineChart } from "react-native-gifted-charts";
 // import { LineChart as RNCKLineChart } from "react-native-chart-kit";
 // import { Dimensions } from "react-native";
 import CustomWeatherChart from "./components/CustomWeatherChart";
