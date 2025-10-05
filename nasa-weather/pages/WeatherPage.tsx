@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useColorScheme } from "react-native";
 import { NativeBaseProvider, Box, Text, Button, VStack, HStack, Spacer, ScrollView, Center} from "native-base";
 import { GluestackUIProvider } from "@gluestack-ui/themed";
@@ -15,6 +15,27 @@ const WeatherPage = () => {
   const scheme = useColorScheme();
   const bgColor = scheme === 'dark' ? '#18181b' : 'white';
   const cardColor = scheme === 'dark' ? '#343438ff' : 'white';
+
+  const [weatherData, setWeatherData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://power.larc.nasa.gov/api/temporal/climatology/point?start=2001&end=2020&latitude=25.664642&longitude=-100.421562&community=ag&parameters=T2M,RH2M,WS2M,PRECTOTCORR,ALLSKY_SFC_SW_DWN,CLOUD_AMT&header=true")
+      .then(res => res.json())
+      .then(data => {
+        setWeatherData(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setLoading(false);
+        console.error(err);
+      });
+  }, []);
+
+  // Helper para mostrar valores
+  const getValue = (param, month = "ANN") => {
+    return weatherData?.properties?.parameter?.[param]?.[month] ?? "-";
+  };
 
   return (
         <VStack space="4" p="4" bg={bgColor} width="100%" height="100%">
@@ -51,16 +72,16 @@ const WeatherPage = () => {
                 <Text m={5} fontWeight="bold" fontSize="lg" color={"#ffffff"}>Details</Text>
               {/* <Spacer /> */}
               <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
-                <Wideget />
-                <Wideget /> 
+                <Wideget label="Temperatura" value={getValue("T2M")} unit="°C" icon={<MaterialCommunityIcons name="thermometer" color="#e81f1fff" size={40} />} />
+                <Wideget label="Humedad" value={getValue("RH2M")} unit="%" icon={<MaterialCommunityIcons name="water-percent" color="#1fe826ff" size={40} />} />
               </HStack>
               <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
-                <Wideget />
-                <Wideget /> 
+                <Wideget label="Viento" value={getValue("WS2M")} unit="m/s" icon={<MaterialCommunityIcons name="weather-windy" color="#2e8ae6ff" size={40} />} />
+                <Wideget label="Precipitación" value={getValue("PRECTOTCORR")} unit="mm/día" icon={<MaterialCommunityIcons name="weather-rainy" color="#1f87e8ff" size={40} />} />
               </HStack>
               <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
-                <Wideget />
-                <Wideget /> 
+                <Wideget label="Radiación solar" value={getValue("ALLSKY_SFC_SW_DWN")} unit="MJ/m²/día" icon={<MaterialCommunityIcons name="white-balance-sunny" color="#e8c21fff" size={40} />} />
+                <Wideget label="Nubosidad" value={getValue("CLOUD_AMT")} unit="%" icon={<MaterialCommunityIcons name="weather-cloudy" color="#cccccc" size={40} />} />
               </HStack>
               <HStack w="100%" pl="4" pr="4" justifyContent="center" flexWrap="wrap">
                 <CustomWeatherChart />
