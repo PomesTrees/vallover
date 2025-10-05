@@ -20,25 +20,27 @@ export default function App() {
     <GluestackUIProvider config={config}>
       <NativeBaseProvider>
         <VStack space="4" p="4" bg={bgColor} width="100%" height="100%">
-          <Box rounded="lg" p="4" shadow="2" bg={cardColor} flex={1}> 
-            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
-              <VStack w="100%" h="5%" bg={cardColor}>
-                <Box w="100%" h="100%" bg="#175997ff" p={5} flexDirection="row" alignItems="center" justifyContent="space-between" borderTopLeftRadius={20} borderTopRightRadius={20}>
-                  <MaterialIcons name="arrow-back-ios" color="#ffffffff" size={20} />
-                  <Text fontSize="lg" fontWeight="bold" color={"#ffffff"}>City, Country</Text>
-                  <Entypo name="dots-three-horizontal" color="#ffffffff" size={20} />
-                </Box>
+          <Box rounded="lg" shadow="2" bg={cardColor} flex={1}> 
+            {/* Header fijo */}
+            <Box w="100%" h="80px" bg="#175997ff" p={5} flexDirection="row" alignItems="center" justifyContent="space-between" borderTopLeftRadius={10} borderTopRightRadius={10} position="absolute" top={0} left={0} zIndex={10}>
+              <MaterialIcons name="arrow-back-ios" color="#ffffffff" size={20} />
+              <Text fontSize="lg" fontWeight="bold" color={"#ffffff"}>City, Country</Text>
+              <Entypo name="dots-three-horizontal" color="#ffffffff" size={20} />
+            </Box>
+            {/* Contenido scrollable */}
+            <ScrollView style={{ flex: 1, marginTop: 64 }} contentContainerStyle={{ flexGrow: 1 }}>
+              <VStack w="100%" h="8%" bg={cardColor}>
                 <Box w="100%" h="100%" bg="#175997ff" flexDirection="row" justifyContent="center" alignItems="center" >
-                  <MaterialCommunityIcons name="weather-lightning" color="#ffffffff" size={100} />
+                  <MaterialCommunityIcons name="weather-lightning" color="#ffffffff" size={120} />
                 </Box>
                 <Box w="100%" h="100%" bg="#175997ff" justifyContent="center" alignItems="center" >
                   <Text fontSize="lg" fontWeight="bold" color={"#ffffff"}>Weather</Text>
                   <Text color={"#ffffff"}>Weekday, Day Month Year</Text>
                 </Box>
-                <Box w="100%" h="100%" bg="#175997ff" justifyContent="center" alignItems="center" borderBottomLeftRadius={20} borderBottomRightRadius={20} >
+                <Box w="100%" h="80%" bg="#175997ff" justifyContent="center" alignItems="center" borderBottomLeftRadius={20} borderBottomRightRadius={20} >
                 </Box>
               </VStack>
-              <HStack w="100%" h="17%" mt={200} pl="4" pr="4" alignContent="center" justifyContent="center" flexWrap="wrap" >
+              <HStack w="100%" h="25%" pl="4" pr="4" alignContent="center" justifyContent="center" flexWrap="wrap" >
                 <CustomWeatherChart />
               </HStack>
                <HStack w="100%" justifyContent="center" flexWrap="wrap">

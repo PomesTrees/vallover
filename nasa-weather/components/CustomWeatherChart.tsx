@@ -13,7 +13,7 @@ const CustomWeatherChart = () => {
             data={[{ value: 2, label: 'Mon' }, { value: 3, label: 'Tue' }, { value: 0, label: 'Wed' }, { value: 3, label: 'Thu' }, { value: 7, label: 'Fri' }, { value: 2, label: 'Sat' }, { value: 5, label: 'Sun' }]}
             curved
             areaChart
-            height={130}
+            height={120}
             width={340}
             color="#0288d1"
             thickness={3}
