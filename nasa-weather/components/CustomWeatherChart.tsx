@@ -4,7 +4,7 @@ import { LineChart } from "react-native-gifted-charts";
 
 const CustomWeatherChart = () => {
   return (
-  <Box bg="#27272a" w="400px" h="220px" rounded="lg" m={2} p="2" shadow="2" display="flex" flexDirection="column" alignItems="center" justifyContent="center" >
+  <Box bg="#27272a" w="400px" h="230px" rounded="lg" m={2} p="2" shadow="2" display="flex" flexDirection="column" alignItems="center" justifyContent="center" >
       <Text fontSize="md" fontWeight="bold" mb="4" color={"#ffffff"}>
         Bezier Line Chart
       </Text>
@@ -13,7 +13,7 @@ const CustomWeatherChart = () => {
             data={[{ value: 2, label: 'Mon' }, { value: 3, label: 'Tue' }, { value: 0, label: 'Wed' }, { value: 3, label: 'Thu' }, { value: 7, label: 'Fri' }, { value: 2, label: 'Sat' }, { value: 5, label: 'Sun' }]}
             curved
             areaChart
-            height={120}
+            height={130}
             width={340}
             color="#0288d1"
             thickness={3}
